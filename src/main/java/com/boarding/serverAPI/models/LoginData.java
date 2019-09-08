@@ -7,7 +7,6 @@ public class LoginData {
 
     @Id
     private ObjectId _id;
-
     private String username;
     private String password;
     private boolean loginStatus;
