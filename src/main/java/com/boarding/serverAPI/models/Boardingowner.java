@@ -3,11 +3,13 @@ package com.boarding.serverAPI.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 
-public class BoardingOwner {
+
+public class Boardingowner {
     @Id
-    private ObjectId owner_id;
-    private ObjectId boarding_id;
+    private ObjectId _id;
+    private ArrayList<String> boarding_ids;
     private String first_name;
     private String last_name;
     private String DOB;
@@ -16,13 +18,13 @@ public class BoardingOwner {
     private String image_url;
 
 
-    public BoardingOwner() {
+    public Boardingowner() {
 
     }
 
-    public BoardingOwner(ObjectId _id, ObjectId boarding_id, String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
-        this.owner_id = _id;
-        this.boarding_id = boarding_id;
+    public Boardingowner(ObjectId _id, ArrayList<String> boarding_ids, String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
+        this._id = _id;
+        this.boarding_ids = boarding_ids;
         this.first_name = first_name;
         this.last_name = last_name;
         this.DOB = DOB;
@@ -31,20 +33,20 @@ public class BoardingOwner {
         this.image_url = image_url;
     }
 
-    public String getOwner_id() {
-        return owner_id.toHexString();
+    public String get_id() {
+        return _id.toHexString();
     }
 
-    public void setOwner_id(ObjectId owner_id) {
-        this.owner_id = owner_id;
+    public void set_id(ObjectId _id) {
+        this._id = _id;
     }
 
-    public String  getBoarding_id() {
-        return boarding_id.toHexString();
+    public ArrayList<String> getBoarding_ids() {
+        return boarding_ids;
     }
 
-    public void setBoarding_id(ObjectId boarding_id) {
-        this.boarding_id = boarding_id;
+    public void setBoarding_ids(ArrayList<String> boarding_ids) {
+        this.boarding_ids = boarding_ids;
     }
 
     public String getFirst_name() {

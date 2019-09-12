@@ -3,7 +3,7 @@ package com.boarding.serverAPI.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class LoginData {
+public class Logindata {
 
     @Id
     private ObjectId _id;
@@ -12,7 +12,7 @@ public class LoginData {
     private boolean loginStatus;
     private String email;
 
-    public LoginData(ObjectId _id, String username,String password,boolean loginStatus,String email){
+    public Logindata(ObjectId _id, String username, String password, boolean loginStatus, String email){
         this._id=_id;
         this.username=username;
         this.email=email;

@@ -1,7 +1,7 @@
 package com.boarding.serverAPI.controller;
 
 
-import com.boarding.serverAPI.models.BoardingOwner;
+import com.boarding.serverAPI.models.Boardingowner;
 import com.boarding.serverAPI.repositories.BoardingOwnerRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,37 +11,34 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/Boarding-Owner")
+@RequestMapping("/Boarding-Owner")
 public class BoardingOwnerController {
 
-    private final BoardingOwnerRepository boardingOwnerRepository;
+  @Autowired
+  private BoardingOwnerRepository boardingOwnerRepository;
 
-    @Autowired
-    public BoardingOwnerController(BoardingOwnerRepository boardingOwnerRepository) {
-        this.boardingOwnerRepository = boardingOwnerRepository;
-    }
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public List<Boardingowner> getAllOwners() {
+        List<Boardingowner> boardingownerList =boardingOwnerRepository.findAll();
 
-    @GetMapping("/")
-    public List<BoardingOwner> getAllOwners() {
-
-        return boardingOwnerRepository.findAll();
+        return boardingownerList;
     }
 
     @GetMapping("/{id}")
-    public BoardingOwner getOwner(@PathVariable("id") ObjectId id) {
+    public Boardingowner getOwner(@PathVariable("id") ObjectId id) {
         return boardingOwnerRepository.findBy_id(id);
     }
 
     @PutMapping("/{id}")
-    public BoardingOwner modifyOwner(@PathVariable("id") ObjectId id, @Valid @RequestBody BoardingOwner boardingOwner) {
-        boardingOwner.setOwner_id(id);
+    public Boardingowner modifyOwner(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingowner boardingOwner) {
+        boardingOwner.set_id(id);
         boardingOwnerRepository.save(boardingOwner);
         return boardingOwner;
     }
 
     @PostMapping("/")
-    public BoardingOwner createBoardingOwner(@Valid @RequestBody BoardingOwner boardingOwner) {
-        boardingOwner.setOwner_id(ObjectId.get());
+    public Boardingowner createBoardingOwner(@Valid @RequestBody Boardingowner boardingOwner) {
+        boardingOwner.set_id(ObjectId.get());
         boardingOwnerRepository.save(boardingOwner);
         return boardingOwner;
     }
