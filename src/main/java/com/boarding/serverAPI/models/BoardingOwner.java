@@ -5,72 +5,93 @@ import org.springframework.data.annotation.Id;
 
 
 public class BoardingOwner {
-   @Id
-   private ObjectId _id;
-   private String first_name;
-   private String last_name;
-   private String DOB;
-   private String contact_no;
-   private String address;
-
-   public BoardingOwner(ObjectId _id,String first_name,String last_name,String DOB,String contact_no,String address){
-
-      this._id=_id;
-      this.first_name=first_name;
-      this.last_name=last_name;
-      this.DOB=DOB;
-      this.contact_no=contact_no;
-      this.address=address;
+    @Id
+    private ObjectId owner_id;
+    private ObjectId boarding_id;
+    private String first_name;
+    private String last_name;
+    private String DOB;
+    private String contact_no;
+    private String address;
+    private String image_url;
 
 
+    public BoardingOwner() {
 
-   }
+    }
 
-   public String  get_id() {
-      return _id.toHexString();
-   }
+    public BoardingOwner(ObjectId _id, ObjectId boarding_id, String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
+        this.owner_id = _id;
+        this.boarding_id = boarding_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.DOB = DOB;
+        this.contact_no = contact_no;
+        this.address = address;
+        this.image_url = image_url;
+    }
 
-   public void set_id(ObjectId _id) {
-      this._id = _id;
-   }
+    public String getOwner_id() {
+        return owner_id.toHexString();
+    }
 
-   public String getFirst_name() {
-      return first_name;
-   }
+    public void setOwner_id(ObjectId owner_id) {
+        this.owner_id = owner_id;
+    }
 
-   public void setFirst_name(String first_name) {
-      this.first_name = first_name;
-   }
+    public String  getBoarding_id() {
+        return boarding_id.toHexString();
+    }
 
-   public String getLast_name() {
-      return last_name;
-   }
+    public void setBoarding_id(ObjectId boarding_id) {
+        this.boarding_id = boarding_id;
+    }
 
-   public void setLast_name(String last_name) {
-      this.last_name = last_name;
-   }
+    public String getFirst_name() {
+        return first_name;
+    }
 
-   public String getDOB() {
-      return DOB;
-   }
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
 
-   public void setDOB(String DOB) {
-      this.DOB = DOB;
-   }
+    public String getLast_name() {
+        return last_name;
+    }
 
-   public String getContact_no() {
-      return contact_no;
-   }
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
 
-   public void setContact_no(String contact_no) {
-      this.contact_no = contact_no;
-   }
+    public String getDOB() {
+        return DOB;
+    }
 
-   public String getAddress() {
-      return address;
-   }
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
 
-   public void setAddress(String address) {
-      this.address = address;
-   }
+    public String getContact_no() {
+        return contact_no;
+    }
+
+    public void setContact_no(String contact_no) {
+        this.contact_no = contact_no;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
 }
