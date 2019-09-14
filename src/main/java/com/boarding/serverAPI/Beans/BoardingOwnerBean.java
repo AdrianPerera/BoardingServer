@@ -1,14 +1,11 @@
-package com.boarding.serverAPI.models;
+package com.boarding.serverAPI.Beans;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
+import com.boarding.serverAPI.models.Boardingowner;
 
 import java.util.ArrayList;
 
-
-public class Boardingowner {
-    @Id
-    private ObjectId _id;
+public class BoardingOwnerBean {
+    private String  _id;
     private ArrayList<String> boarding_ids;
     private String first_name;
     private String last_name;
@@ -17,12 +14,7 @@ public class Boardingowner {
     private String address;
     private String image_url;
 
-
-    public Boardingowner() {
-
-    }
-
-    public Boardingowner(ObjectId _id, ArrayList<String> boarding_ids, String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
+    public BoardingOwnerBean(String _id, ArrayList<String> boarding_ids, String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
         this._id = _id;
         this.boarding_ids = boarding_ids;
         this.first_name = first_name;
@@ -33,11 +25,13 @@ public class Boardingowner {
         this.image_url = image_url;
     }
 
-    public ObjectId get_id() {
+
+
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -96,4 +90,20 @@ public class Boardingowner {
     public void setImage_url(String image_url) {
         this.image_url = image_url;
     }
+    public BoardingOwnerBean(){
+
+    }
+    public BoardingOwnerBean setToBean(Boardingowner boardingowner){
+        BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean();
+        boardingOwnerBean.set_id(boardingowner.get_id().toHexString());
+        boardingOwnerBean.setAddress(boardingowner.getAddress());
+        boardingOwnerBean.setBoarding_ids(boardingowner.getBoarding_ids());
+        boardingOwnerBean.setFirst_name(boardingowner.getFirst_name());
+        boardingOwnerBean.setLast_name(boardingowner.getLast_name());
+        boardingOwnerBean.setDOB(boardingowner.getDOB());
+        boardingOwnerBean.setContact_no(boardingowner.getContact_no());
+        boardingOwnerBean.setImage_url(boardingowner.getImage_url());
+        return boardingOwnerBean;
+    }
 }
+

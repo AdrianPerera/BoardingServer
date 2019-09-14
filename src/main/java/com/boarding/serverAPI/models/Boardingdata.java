@@ -28,8 +28,8 @@ public class Boardingdata {
         this.rooms = rooms;
     }
 
-    public String get_id() {
-        return _id.toHexString();
+    public ObjectId get_id() {
+        return _id;
     }
 
     public void set_id(ObjectId _id) {

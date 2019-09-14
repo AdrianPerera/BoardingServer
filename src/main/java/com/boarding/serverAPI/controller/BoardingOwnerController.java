@@ -1,6 +1,8 @@
 package com.boarding.serverAPI.controller;
 
 
+import com.boarding.serverAPI.Beans.BoardingOwnerBean;
+import com.boarding.serverAPI.models.Boardingdata;
 import com.boarding.serverAPI.models.Boardingowner;
 import com.boarding.serverAPI.repositories.BoardingOwnerRepository;
 import org.bson.types.ObjectId;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,15 +21,24 @@ public class BoardingOwnerController {
   private BoardingOwnerRepository boardingOwnerRepository;
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public List<Boardingowner> getAllOwners() {
+    public List<BoardingOwnerBean> getAllOwners() {
         List<Boardingowner> boardingownerList =boardingOwnerRepository.findAll();
+        List<BoardingOwnerBean> boardingOwnerBeanList= new ArrayList<>();
 
-        return boardingownerList;
+        for (Boardingowner boardingowner: boardingownerList) {
+            BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToBean(boardingowner);
+            boardingOwnerBeanList.add(boardingOwnerBean);
+        }
+
+        return boardingOwnerBeanList ;
     }
 
     @GetMapping("/{id}")
-    public Boardingowner getOwner(@PathVariable("id") ObjectId id) {
-        return boardingOwnerRepository.findBy_id(id);
+    public BoardingOwnerBean getOwner(@PathVariable("id") ObjectId id) {
+        Boardingowner boardingowner= boardingOwnerRepository.findBy_id(id);
+        BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToBean(boardingowner) ;
+
+        return boardingOwnerBean;
     }
 
     @PutMapping("/{id}")
@@ -47,4 +59,6 @@ public class BoardingOwnerController {
     public void deleteOwner(@PathVariable ObjectId id) {
         boardingOwnerRepository.delete(boardingOwnerRepository.findBy_id(id));
     }
+
+
 }
