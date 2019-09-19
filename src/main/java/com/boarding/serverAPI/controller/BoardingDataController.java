@@ -1,9 +1,13 @@
 package com.boarding.serverAPI.controller;
 
 import com.boarding.serverAPI.models.Boardingdata;
+import com.boarding.serverAPI.models.JsonPatch;
 import com.boarding.serverAPI.repositories.BoardingDataRepository;
 import com.boarding.serverAPI.repositories.BoardingOwnerRepository;
+import oracle.jrockit.jfr.events.RequestableEventEnvironment;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.JsonPath;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,7 +17,10 @@ import java.util.List;
 @RequestMapping("/Boarding-Data")
 public class BoardingDataController {
 
+    @Autowired
     private BoardingOwnerRepository boardingOwnerRepository;
+
+    @Autowired
     private BoardingDataRepository boardingDataRepository;
 
 
@@ -39,8 +46,20 @@ public class BoardingDataController {
         boardingDataRepository.save(boardingdata);
 
         Boardingdata backboardingdata=boardingDataRepository.findBy_id(boardingdata.get_id());
-        return boardingdata;
+        return backboardingdata;
     }
+
+//    @RequestMapping(value = "/",method = RequestMethod.PATCH)
+//    public void JsonInsert(@RequestBody JsonPatch jsonPatch){
+//        String operation=jsonPatch.getOp();
+//        String path=jsonPatch.getPath();
+//        Object value=jsonPatch.getValue();
+//
+//        if(operation==="replace"){
+//            boardingDataRepository.findOne()
+//        }
+//    }
+
 
 
 }
