@@ -1,5 +1,6 @@
 package com.boarding.serverAPI.controller;
 
+import com.boarding.serverAPI.Beans.BoardingDataBean;
 import com.boarding.serverAPI.models.Boardingdata;
 import com.boarding.serverAPI.models.JsonPatch;
 import com.boarding.serverAPI.repositories.BoardingDataRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.web.JsonPath;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,15 +32,24 @@ public class BoardingDataController {
     }
 
     @GetMapping("/")
-    public List<Boardingdata> getAllBoardingData(){
-        List<Boardingdata> boardingDataList=boardingDataRepository.findAll();
-        return boardingDataList;
+    public List<BoardingDataBean> getAllBoardingData(){
+        List<Boardingdata> boardingdataList=boardingDataRepository.findAll();
+        List<BoardingDataBean> boardingDataBeanList=new ArrayList<>();
+
+        for(Boardingdata boardingdata:boardingdataList){
+            BoardingDataBean boardingDataBean=new BoardingDataBean().setToBean(boardingdata);
+            boardingDataBeanList.add(boardingDataBean);
+        }
+
+
+        return boardingDataBeanList;
     }
 
     @GetMapping("/{id}")
-    public Boardingdata getBoardingData(@PathVariable("id")ObjectId id){
+    public BoardingDataBean getBoardingData(@PathVariable("id")ObjectId id){
         Boardingdata boardingdata=boardingDataRepository.findBy_id(id);
-        return boardingdata;
+        BoardingDataBean boardingDataBean=new BoardingDataBean().setToBean(boardingdata);
+        return boardingDataBean;
     }
     @PostMapping("/{id)")
     public Boardingdata postBoardingData(@Valid @RequestBody Boardingdata boardingdata){
@@ -60,6 +71,13 @@ public class BoardingDataController {
 //        }
 //    }
 
+    @PutMapping("/{id}")
+    public Boardingdata modifyBoardingData(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingdata boardingdata) {
+        boardingdata.set_id(id);
+        boardingDataRepository.save(boardingdata);
+
+        return boardingdata;
+    }
 
 
 }
