@@ -1,0 +1,139 @@
+[
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d8854"
+    ),
+    "owner_id": "5d7a03e24b763458be0c7cc8v",
+    "address": "7093 4th Street",
+    "name": "Raina Ros",
+    "image_url": "http://indiegogo.com/elit/proin.json"
+  }
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d8855"
+    ),
+    "owner_id": "5d7a067f4b763458be0c7cc9",
+    "address": "99030 Ridgeway Avenue",
+    "name": "Tracie Geck",
+    "image_url": "http://omniture.com/aliquam.jsp",
+    "rooms": [
+      {
+        "image_url": "https://disqus.com/donec/ut/dolor/morbi/vel/lectus.png",
+        "room_availability": false,
+        "washroom_availability": true,
+        "size": 99
+      },
+      {
+        "image_url": "https://sina.com.cn/sit/amet/diam.jpg",
+        "room_availability": true,
+        "washroom_availability": true,
+        "size": 20
+      }
+    ]
+  }
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d8856"
+    ),
+    "owner_id": "5d7a067f4b763458be0c7cca",
+    "address": "14 Milwaukee Terrace",
+    "name": "Ronda Dawid",
+    "image_url": "http://opensource.org/felis/ut.js",
+    "rooms": [
+      {
+        "image_url": "https://washington.edu/a.jpg",
+        "room_availability": true,
+        "washroom_availability": true,
+        "size": 49
+      },
+      {
+        "image_url": "http://jiathis.com/ut.jsp",
+        "room_availability": false,
+        "washroom_availability": false,
+        "size": 90
+      },
+      {
+        "image_url": "https://usa.gov/id/sapien/in/sapien/iaculis.js",
+        "room_availability": true,
+        "washroom_availability": true,
+        "size": 88
+      }
+    ]
+  }
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d8857"
+    ),
+    "owner_id": "5d7a067f4b763458be0c7ccb",
+    "address": "180 Mifflin Alley",
+    "name": "Rich Bick",
+    "image_url": "https://xinhuanet.com/parturient.js",
+    "rooms": [
+      {
+        "image_url": "http://go.com/tristique/est.aspx",
+        "room_availability": false,
+        "washroom_availability": true,
+        "size": 100
+      },
+      {
+        "image_url": "https://reverbnation.com/amet.js",
+        "room_availability": true,
+        "washroom_availability": false,
+        "size": 43
+      },
+      {
+        "image_url": "http://booking.com/rutrum/at/lorem/integer/tincidunt/ante/vel.jsp",
+        "room_availability": false,
+        "washroom_availability": true,
+        "size": 96
+      }
+    ]
+  }
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d8858"
+    ),
+    "owner_id": "5d7a067f4b763458be0c7ccc",
+    "address": "1673 Summit Trail",
+    "name": "Malachi Broadbere",
+    "image_url": "http://xing.com/ultrices/mattis/odio/donec.png",
+    "rooms": [
+      {
+        "image_url": "http://hp.com/sapien/urna/pretium/nisl.png",
+        "room_availability": false,
+        "washroom_availability": false,
+        "size": 56
+      },
+      {
+        "image_url": "https://ow.ly/penatibus/et/magnis/dis/parturient.js",
+        "room_availability": true,
+        "washroom_availability": true,
+        "size": 5
+      },
+      {
+        "image_url": "http://nyu.edu/primis/in.html",
+        "room_availability": false,
+        "washroom_availability": false,
+        "size": 100
+      }
+    ]
+  }
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d8859"
+    ),
+    "owner_id": "5d7a03e24b763458be0c7cc",
+    "address": "7093 4th Street",
+    "name": "Raina Ros",
+    "image_url": "http://indiegogo.com/elit/proin.json"
+  }
+  {
+    "_id": ObjectId(
+    "5d9b3c6961f69fa4081d885a"
+    ),
+    "owner_id": "5d7a03e24b763458be0c7cc",
+    "address": "7093 4th Street",
+    "name": "HI baba",
+    "image_url": "http://indiegogo.com/elit/proin.json"
+  }
+]

@@ -60,17 +60,6 @@ public class BoardingDataController {
         return backboardingdata;
     }
 
-//    @RequestMapping(value = "/",method = RequestMethod.PATCH)
-//    public void JsonInsert(@RequestBody JsonPatch jsonPatch){
-//        String operation=jsonPatch.getOp();
-//        String path=jsonPatch.getPath();
-//        Object value=jsonPatch.getValue();
-//
-//        if(operation==="replace"){
-//            boardingDataRepository.findOne()
-//        }
-//    }
-
     @PutMapping("/{id}")
     public Boardingdata modifyBoardingData(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingdata boardingdata) {
         boardingdata.set_id(id);
