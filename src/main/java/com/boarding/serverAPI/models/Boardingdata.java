@@ -13,19 +13,19 @@ public class Boardingdata {
 
     @Id
     private ObjectId _id;
-    private String owner_id;
+    private ObjectId owner_id;
     private String address;
     private String name;
     private String image_url;
-    private List<Room> rooms;
+    private List<Room> roomList;
 
-    public Boardingdata(ObjectId boarding_id, String owner_id, String address, String name, String image_url, List<Room> rooms) {
-        this._id = boarding_id;
+    public Boardingdata(ObjectId _id, ObjectId owner_id, String address, String name, String image_url, List<Room> roomList) {
+        this._id = _id;
         this.owner_id = owner_id;
         this.address = address;
         this.name = name;
         this.image_url = image_url;
-        this.rooms = rooms;
+        this.roomList = roomList;
     }
 
     public ObjectId get_id() {
@@ -36,11 +36,11 @@ public class Boardingdata {
         this._id = _id;
     }
 
-    public String getOwner_id() {
+    public ObjectId getOwner_id() {
         return owner_id;
     }
 
-    public void setOwner_id(String owner_id) {
+    public void setOwner_id(ObjectId owner_id) {
         this.owner_id = owner_id;
     }
 
@@ -68,12 +68,12 @@ public class Boardingdata {
         this.image_url = image_url;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public List<Room> getRoomList() {
+        return roomList;
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
     }
 }
 

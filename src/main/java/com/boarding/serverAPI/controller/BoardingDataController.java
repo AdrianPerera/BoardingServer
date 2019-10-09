@@ -2,13 +2,11 @@ package com.boarding.serverAPI.controller;
 
 import com.boarding.serverAPI.Beans.BoardingDataBean;
 import com.boarding.serverAPI.models.Boardingdata;
-import com.boarding.serverAPI.models.JsonPatch;
+import com.boarding.serverAPI.models.Boardingowner;
 import com.boarding.serverAPI.repositories.BoardingDataRepository;
 import com.boarding.serverAPI.repositories.BoardingOwnerRepository;
-import oracle.jrockit.jfr.events.RequestableEventEnvironment;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.web.JsonPath;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,32 +30,45 @@ public class BoardingDataController {
     }
 
     @GetMapping("/")
-    public List<BoardingDataBean> getAllBoardingData(){
-        List<Boardingdata> boardingdataList=boardingDataRepository.findAll();
-        List<BoardingDataBean> boardingDataBeanList=new ArrayList<>();
+    public List<BoardingDataBean> getAllBoardingData() {
+        List<Boardingdata> boardingDataList = boardingDataRepository.findAll();
+        List<BoardingDataBean> boardingDataBeanList = new ArrayList<>();
 
-        for(Boardingdata boardingdata:boardingdataList){
-            BoardingDataBean boardingDataBean=new BoardingDataBean().setToBean(boardingdata);
+
+        for (Boardingdata boardingdata : boardingDataList) {
+            Boardingowner boardingowner = boardingOwnerRepository.findBy_id(boardingdata.getOwner_id());
+
+            BoardingDataBean boardingDataBean = new BoardingDataBean().setToDataBean(boardingdata, boardingowner);
             boardingDataBeanList.add(boardingDataBean);
         }
-
-
         return boardingDataBeanList;
     }
 
     @GetMapping("/{id}")
-    public BoardingDataBean getBoardingData(@PathVariable("id")ObjectId id){
-        Boardingdata boardingdata=boardingDataRepository.findBy_id(id);
-        BoardingDataBean boardingDataBean=new BoardingDataBean().setToBean(boardingdata);
+    public BoardingDataBean getBoardingData(@PathVariable("id") ObjectId id) {
+        Boardingdata boardingdata = boardingDataRepository.findBy_id(id);
+        Boardingowner boardingowner = boardingOwnerRepository.findBy_id(boardingdata.getOwner_id());
+        BoardingDataBean boardingDataBean = new BoardingDataBean().setToDataBean(boardingdata, boardingowner);
         return boardingDataBean;
     }
-    @PostMapping("/{id)")
-    public Boardingdata postBoardingData(@Valid @RequestBody Boardingdata boardingdata){
-        boardingdata.set_id(ObjectId.get());
-        boardingDataRepository.save(boardingdata);
 
-        Boardingdata backboardingdata=boardingDataRepository.findBy_id(boardingdata.get_id());
-        return backboardingdata;
+    @PostMapping("/")
+    public BoardingDataBean postBoardingData(@Valid @RequestBody Boardingdata boardingdata) {
+        try {
+            boardingdata.set_id(ObjectId.get());
+            boardingDataRepository.save(boardingdata);
+            Boardingowner boardingowner = boardingOwnerRepository.findBy_id(boardingdata.getOwner_id());
+
+            BoardingDataBean boardingDataBean = new BoardingDataBean().setToDataBean(boardingdata, boardingowner);
+            return boardingDataBean;
+
+        } catch (Exception e) {
+            BoardingDataBean boardingDataBean = new BoardingDataBean();
+            boardingDataBean.setName(e.getLocalizedMessage());
+            boardingDataBean.setAddress(e.getMessage());
+            return boardingDataBean;
+        }
+
     }
 
     @PutMapping("/{id}")
@@ -66,6 +77,19 @@ public class BoardingDataController {
         boardingDataRepository.save(boardingdata);
 
         return boardingdata;
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteBoardingData(@PathVariable("id") ObjectId id) {
+        try {
+            boardingDataRepository.delete(boardingDataRepository.findBy_id(id));
+            return "success";
+        } catch (Exception e) {
+
+            return e.getMessage();
+        }
+
+
     }
 
 

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class BoardingOwnerBean {
     private String  _id;
-    private ArrayList<String> boarding_ids;
     private String first_name;
     private String last_name;
     private String DOB;
@@ -14,9 +13,8 @@ public class BoardingOwnerBean {
     private String address;
     private String image_url;
 
-    public BoardingOwnerBean(String _id, ArrayList<String> boarding_ids, String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
+    public BoardingOwnerBean(String first_name, String last_name, String DOB, String contact_no, String address, String image_url) {
         this._id = _id;
-        this.boarding_ids = boarding_ids;
         this.first_name = first_name;
         this.last_name = last_name;
         this.DOB = DOB;
@@ -33,14 +31,6 @@ public class BoardingOwnerBean {
 
     public void set_id(String _id) {
         this._id = _id;
-    }
-
-    public ArrayList<String> getBoarding_ids() {
-        return boarding_ids;
-    }
-
-    public void setBoarding_ids(ArrayList<String> boarding_ids) {
-        this.boarding_ids = boarding_ids;
     }
 
     public String getFirst_name() {
@@ -93,11 +83,10 @@ public class BoardingOwnerBean {
     public BoardingOwnerBean(){
 
     }
-    public BoardingOwnerBean setToBean(Boardingowner boardingowner){
+    public BoardingOwnerBean setToOwnerBean(Boardingowner boardingowner){
         BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean();
         boardingOwnerBean.set_id(boardingowner.get_id().toHexString());
         boardingOwnerBean.setAddress(boardingowner.getAddress());
-        boardingOwnerBean.setBoarding_ids(boardingowner.getBoarding_ids());
         boardingOwnerBean.setFirst_name(boardingowner.getFirst_name());
         boardingOwnerBean.setLast_name(boardingowner.getLast_name());
         boardingOwnerBean.setDOB(boardingowner.getDOB());

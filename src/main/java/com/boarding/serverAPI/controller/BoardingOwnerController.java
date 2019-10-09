@@ -26,7 +26,7 @@ public class BoardingOwnerController {
         List<BoardingOwnerBean> boardingOwnerBeanList= new ArrayList<>();
 
         for (Boardingowner boardingowner: boardingownerList) {
-            BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToBean(boardingowner);
+            BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToOwnerBean(boardingowner);
             boardingOwnerBeanList.add(boardingOwnerBean);
         }
 
@@ -36,23 +36,25 @@ public class BoardingOwnerController {
     @GetMapping("/{id}")
     public BoardingOwnerBean getOwner(@PathVariable("id") ObjectId id) {
         Boardingowner boardingowner= boardingOwnerRepository.findBy_id(id);
-        BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToBean(boardingowner) ;
+        BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToOwnerBean(boardingowner) ;
 
         return boardingOwnerBean;
     }
 
     @PutMapping("/{id}")
-    public Boardingowner modifyOwner(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingowner boardingOwner) {
+    public BoardingOwnerBean modifyOwner(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingowner boardingOwner) {
         boardingOwner.set_id(id);
         boardingOwnerRepository.save(boardingOwner);
-        return boardingOwner;
+        BoardingOwnerBean boardingOwnerBeanReturn=new BoardingOwnerBean().setToOwnerBean(boardingOwnerRepository.findBy_id(id));
+        return boardingOwnerBeanReturn;
     }
 
     @PostMapping("/")
-    public Boardingowner createBoardingOwner(@Valid @RequestBody Boardingowner boardingOwner) {
+    public BoardingOwnerBean createBoardingOwner(@Valid @RequestBody Boardingowner boardingOwner) {
         boardingOwner.set_id(ObjectId.get());
         boardingOwnerRepository.save(boardingOwner);
-        return boardingOwner;
+        BoardingOwnerBean boardingownerReturn= new BoardingOwnerBean().setToOwnerBean(boardingOwnerRepository.findBy_id(boardingOwner.get_id())) ;
+        return boardingownerReturn;
     }
 
     @DeleteMapping("/{id}")

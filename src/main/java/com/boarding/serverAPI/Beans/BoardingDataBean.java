@@ -11,15 +11,15 @@ public class BoardingDataBean {
     }
 
     private String _id;
-    private String owner_id;
+    private BoardingOwnerBean boardingOwnerBean;
     private String address;
     private String name;
     private String image_url;
     private List<Room> roomList;
 
-    public BoardingDataBean(String _id, String owner_id, String address, String name, String image_url, List<Room> roomList) {
+    public BoardingDataBean(String _id, BoardingOwnerBean boardingOwnerBean, String address, String name, String image_url, List<Room> roomList) {
         this._id = _id;
-        this.owner_id = owner_id;
+        this.boardingOwnerBean = boardingOwnerBean;
         this.address = address;
         this.name = name;
         this.image_url = image_url;
@@ -34,12 +34,12 @@ public class BoardingDataBean {
         this._id = _id;
     }
 
-    public String getOwner_id() {
-        return owner_id;
+    public BoardingOwnerBean getBoardingOwnerBean() {
+        return boardingOwnerBean;
     }
 
-    public void setOwner_id(String owner_id) {
-        this.owner_id = owner_id;
+    public void setBoardingOwnerBean(BoardingOwnerBean boardingOwnerBean) {
+        this.boardingOwnerBean = boardingOwnerBean;
     }
 
     public String getAddress() {
@@ -74,16 +74,16 @@ public class BoardingDataBean {
         this.roomList = roomList;
     }
 
-
-    public BoardingDataBean setToBean(Boardingdata boardingdata){
+    public BoardingDataBean setToDataBean(Boardingdata boardingdata,Boardingowner boardingowner){
+        BoardingOwnerBean boardingOwnerBean=new BoardingOwnerBean().setToOwnerBean(boardingowner);
         BoardingDataBean boardingDataBean=new BoardingDataBean();
         
         boardingDataBean.set_id(boardingdata.get_id().toHexString());
-        boardingDataBean.setOwner_id(boardingdata.getOwner_id());
+        boardingDataBean.setBoardingOwnerBean(boardingOwnerBean);
         boardingDataBean.setAddress(boardingdata.getAddress());
         boardingDataBean.setName(boardingdata.getName());
         boardingDataBean.setImage_url(boardingdata.getImage_url());
-        boardingDataBean.setRoomList(boardingdata.getRooms());
+        boardingDataBean.setRoomList(boardingdata.getRoomList());
 
         return boardingDataBean;
     }
