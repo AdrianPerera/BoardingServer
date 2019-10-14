@@ -1,12 +1,17 @@
 package com.boarding.serverAPI.controller;
 
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.boarding.serverAPI.Beans.BoardingOwnerBean;
 import com.boarding.serverAPI.models.Boardingdata;
 import com.boarding.serverAPI.models.Boardingowner;
 import com.boarding.serverAPI.repositories.BoardingOwnerRepository;
+import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -58,8 +63,16 @@ public class BoardingOwnerController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOwner(@PathVariable ObjectId id) {
-        boardingOwnerRepository.delete(boardingOwnerRepository.findBy_id(id));
+    public String deleteOwner(@PathVariable ObjectId id) {
+
+        try{
+            boardingOwnerRepository.delete(boardingOwnerRepository.findBy_id(id));
+            return "success";
+
+        }catch (Exception e){
+             return e.getCause().toString();
+        }
+
     }
 
 

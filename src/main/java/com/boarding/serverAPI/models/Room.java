@@ -1,19 +1,26 @@
 package com.boarding.serverAPI.models;
 
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
+
 public class Room {
     private String image_url;
     private boolean room_availability;
     private boolean washroom_availabilty;
-    private int size;
+    private Integer NoOfBeds;
+    private Integer size;
+    private Double price;
 
     public Room(){
 
     }
-    public Room(String image_url,boolean room_availability,boolean washroom_availabilty,int size){
-    this.image_url=image_url;
-    this.room_availability=room_availability;
-    this.washroom_availabilty=washroom_availabilty;
-    this.size=size;
+
+    public Room(String image_url, boolean room_availability, boolean washroom_availabilty, Integer noOfBeds, Double price, Integer size) {
+        this.image_url = image_url;
+        this.room_availability = room_availability;
+        this.washroom_availabilty = washroom_availabilty;
+        NoOfBeds = noOfBeds;
+        this.price = price;
+        this.size = size;
     }
 
     public String getImage_url() {
@@ -40,11 +47,27 @@ public class Room {
         this.washroom_availabilty = washroom_availabilty;
     }
 
-    public int getSize() {
+    public Integer getNoOfBeds() {
+        return NoOfBeds;
+    }
+
+    public void setNoOfBeds(Integer noOfBeds) {
+        NoOfBeds = noOfBeds;
+    }
+
+    public Integer getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(Integer size) {
         this.size = size;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

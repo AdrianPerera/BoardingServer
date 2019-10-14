@@ -1,6 +1,7 @@
 package com.boarding.serverAPI.controller;
 
 import com.boarding.serverAPI.Beans.BoardingDataBean;
+import com.boarding.serverAPI.Beans.BoardingOwnerBean;
 import com.boarding.serverAPI.models.Boardingdata;
 import com.boarding.serverAPI.models.Boardingowner;
 import com.boarding.serverAPI.repositories.BoardingDataRepository;
@@ -72,11 +73,12 @@ public class BoardingDataController {
     }
 
     @PutMapping("/{id}")
-    public Boardingdata modifyBoardingData(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingdata boardingdata) {
+    public BoardingDataBean modifyBoardingData(@PathVariable("id") ObjectId id, @Valid @RequestBody Boardingdata boardingdata) {
         boardingdata.set_id(id);
         boardingDataRepository.save(boardingdata);
-
-        return boardingdata;
+        Boardingowner boardingowner=boardingOwnerRepository.findBy_id(boardingdata.getOwner_id());
+        Boardingdata boardingdata1= boardingDataRepository.findBy_id(id);
+        return new BoardingDataBean().setToDataBean(boardingdata1,boardingowner) ;
     }
 
     @DeleteMapping("/{id}")
@@ -88,7 +90,6 @@ public class BoardingDataController {
 
             return e.getMessage();
         }
-
 
     }
 
